@@ -1,4 +1,4 @@
-dimensions and wights 
+dimensions and weights 
 mobile: (in green)
    dimensions:
      0.15m x 0.07m x 0.3m
