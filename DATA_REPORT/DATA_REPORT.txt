@@ -1,0 +1,27 @@
+dimensions and wights 
+mobile: (in green)
+   dimensions:
+     0.15m x 0.07m x 0.3m
+    weight:
+      1kg (assuming that webots considers mass in kg)
+wheels: (in blue) wheels have the same geometry and weight
+  dimensions:
+    h = 0.05m x r = 0.07m
+   weight:
+      0.1kg
+arm: (in red) arm has three degrees of freedom with different sizes and weight
+  base arm:
+    dimensions:
+      0.05m x 0.02m x 0.15m
+     weight:
+       0.08kg
+  mid arm:
+    dimensions:
+       0.05m x 0.02m x 0.1m
+    weight:
+      0.05kg
+  end arm:
+    dimensions:
+      0.05m x 0.02m x 0.05m
+     weight:
+       0.02kg

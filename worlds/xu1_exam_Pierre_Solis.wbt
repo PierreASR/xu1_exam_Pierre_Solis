@@ -1,0 +1,200 @@
+#VRML_SIM R2019b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.4065911276449967 -0.8957394685616157 -0.17981785056363078 5.401064713897002
+  position 0.44616840171377314 0.4846255456876551 0.5690758870634169
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+Solid {
+  translation 0 0.07 0
+  children [
+    DEF G_BOX Shape {
+      appearance DEF G_BOX PBRAppearance {
+        baseColor 0.45098 0.823529 0.08627499999999999
+        roughness 0.5
+      }
+      geometry DEF G_BOX Box {
+        size 0.15 0.07 0.3
+      }
+    }
+    DEF G_CYLINDER_RIGHT_BACK HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.1 0 0.1
+        staticFriction 0.01
+      }
+      endPoint Solid {
+        translation 0.1 0 0.1
+        rotation 0 0 1 1.5708003061004252
+        children [
+          DEF G_CYLINDER Shape {
+            appearance DEF S_CYLINDER PBRAppearance {
+              baseColor 0.12549 0.290196 0.529412
+              roughness 1
+              metalness 0
+            }
+            geometry DEF G_CYLINDER Cylinder {
+              height 0.05
+              radius 0.07
+            }
+          }
+        ]
+        boundingObject USE G_CYLINDER
+        physics Physics {
+          density -1
+          mass 0.1
+        }
+      }
+    }
+    DEF G_CYLINDER_LEFT_BACK HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.1 0 0.1
+        staticFriction 0.01
+      }
+      endPoint Solid {
+        translation -0.1 0 0.1
+        rotation 0 0 1 1.5707996938995745
+        children [
+          Shape {
+            appearance USE S_CYLINDER
+            geometry USE G_CYLINDER
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE G_CYLINDER
+        physics Physics {
+          density -1
+          mass 0.1
+        }
+      }
+    }
+    DEF G_CYLINDER_LEFT_FRONT HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.1 0 -0.1
+        staticFriction 0.01
+      }
+      endPoint Solid {
+        translation -0.1 0 -0.1
+        rotation 0 0 1 1.5708003061004252
+        children [
+          Shape {
+            appearance USE S_CYLINDER
+            geometry USE G_CYLINDER
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE G_CYLINDER
+        physics Physics {
+          density -1
+          mass 0.1
+        }
+      }
+    }
+    DEF G_CYLINDER_RIGHT_FRONT HingeJoint {
+      jointParameters HingeJointParameters {
+      }
+      endPoint Solid {
+        translation 0.1 0 -0.1
+        rotation 0 0 1 1.5707996938995747
+        children [
+          Shape {
+            appearance USE S_CYLINDER
+            geometry USE G_CYLINDER
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE G_CYLINDER
+        physics Physics {
+          density -1
+          mass 0.1
+        }
+      }
+    }
+    DEF G_ARM HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1
+        anchor 0 0.045 0.075
+        staticFriction 0.01
+      }
+      endPoint DEF BASE_ARM Solid {
+        translation 0 0.10811 0.0344773
+        rotation 1 0 0 0.9999999999999998
+        children [
+          Shape {
+            appearance DEF BASE_ARM PBRAppearance {
+              baseColor 0.937255 0.16078399999999998 0.16078399999999998
+              roughness 0.25
+              metalness 0.75
+            }
+            geometry DEF G_BASE_ARM Box {
+              size 0.05 0.02 0.15
+            }
+          }
+          DEF MID_ARM HingeJoint {
+            jointParameters HingeJointParameters {
+              position 1
+              anchor 0 0 -0.075
+              staticFriction 0.01
+            }
+            endPoint DEF MID_ARM Solid {
+              translation 0 0.042915 -0.102555
+              rotation 1 0 0 0.9999999999999998
+              children [
+                Shape {
+                  appearance USE BASE_ARM
+                  geometry DEF MID_ARM Box {
+                    size 0.05 0.02 0.1
+                  }
+                }
+                DEF END_ARM HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position 1
+                    anchor 0 0 -0.05
+                  }
+                  endPoint DEF END_ARM Solid {
+                    translation 0 0.02103677462019741 -0.06350755764670349
+                    rotation 1 0 0 0.9999999999999998
+                    children [
+                      Shape {
+                        appearance USE BASE_ARM
+                        geometry DEF G_END_ARM Box {
+                          size 0.05 0.02 0.05
+                        }
+                      }
+                    ]
+                    boundingObject USE G_END_ARM
+                    physics Physics {
+                      density -1
+                      mass 0.02
+                    }
+                  }
+                }
+              ]
+              boundingObject USE MID_ARM
+              physics Physics {
+                density -1
+                mass 0.05
+              }
+            }
+          }
+        ]
+        name "solid(4)"
+        boundingObject USE G_BASE_ARM
+        physics Physics {
+          density -1
+          mass 0.08
+        }
+      }
+    }
+  ]
+  boundingObject USE G_BOX
+  physics Physics {
+    density -1
+    mass 1
+  }
+}
